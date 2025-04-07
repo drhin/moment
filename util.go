@@ -42,6 +42,16 @@ func EndOfDayStr(f ...string) string {
 	return EndOfDay().Format(time.DateTime)
 }
 
+// GetPreviousDay 获取指定日期的前一天
+func GetPreviousDay(t time.Time) time.Time {
+	return t.AddDate(0, 0, -1)
+}
+
+// GetNextDay 获取指定日期的下一天
+func GetNextDay(t time.Time) time.Time {
+	return t.AddDate(0, 0, 1)
+}
+
 // =====================================================================================================================
 // 周
 
@@ -311,4 +321,9 @@ func GetDatesInRange(start, end time.Time) []time.Time {
 // DayOfYear 计算指定日期是该年的第几天
 func DayOfYear(t time.Time) int {
 	return t.YearDay()
+}
+
+// InDuration 判断指定时间是否在指定时间段内
+func InDuration(t, start, end time.Time) bool {
+	return t.After(start) && t.Before(end)
 }
